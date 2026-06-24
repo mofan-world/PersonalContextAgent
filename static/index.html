@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Context Agent</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">PCA</div>
+          <div>
+            <h1>Personal Context Agent</h1>
+            <p>本地上下文工作台</p>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="主导航">
+          <button class="nav-item active" data-view="dashboard">总览</button>
+          <button class="nav-item" data-view="user-profiles">用户档案</button>
+          <button class="nav-item" data-view="project-profiles">项目档案</button>
+          <button class="nav-item" data-view="issue-progress">问题进度</button>
+          <button class="nav-item" data-view="error-records">错误记录</button>
+          <button class="nav-item" data-view="prompt-templates">Prompt 模板</button>
+          <button class="nav-item" data-view="context-package">上下文包</button>
+        </nav>
+      </aside>
+
+      <main class="workspace">
+        <section class="topbar">
+          <div>
+            <p class="eyebrow">Local LAN · Docker Compose</p>
+            <h2 id="view-title">总览</h2>
+          </div>
+          <button id="refresh-btn" class="ghost-btn" type="button">刷新</button>
+        </section>
+
+        <section id="dashboard-view" class="view active">
+          <div id="summary-grid" class="summary-grid"></div>
+          <div class="wide-panel">
+            <h3>模块</h3>
+            <div id="module-grid" class="structure-grid"></div>
+          </div>
+        </section>
+
+        <section id="resource-view" class="view">
+          <div class="resource-layout">
+            <form id="resource-form" class="editor-panel"></form>
+            <div class="list-panel">
+              <div class="list-head">
+                <h3 id="list-title">记录</h3>
+                <span id="record-count" class="count-pill">0</span>
+              </div>
+              <div id="record-list" class="record-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="package-view" class="view">
+          <div class="package-layout">
+            <div class="editor-panel">
+              <h3>一键生成上下文包</h3>
+              <label>
+                项目范围
+                <select id="package-project"></select>
+              </label>
+              <label>
+                平台范围
+                <select id="package-platform"></select>
+              </label>
+              <label>
+                输出格式
+                <select id="package-output">
+                  <option value="markdown">Markdown</option>
+                  <option value="json">JSON</option>
+                </select>
+              </label>
+              <div class="button-row">
+                <button id="generate-package-btn" type="button">生成</button>
+                <button id="download-package-btn" class="secondary-btn" type="button">下载</button>
+              </div>
+            </div>
+            <div class="preview-panel">
+              <div class="list-head">
+                <h3>预览</h3>
+                <button id="copy-package-btn" class="ghost-btn compact" type="button">复制</button>
+              </div>
+              <textarea id="package-preview" spellcheck="false"></textarea>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="field-template">
+      <label>
+        <span></span>
+        <input />
+      </label>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

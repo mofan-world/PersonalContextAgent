@@ -1,0 +1,14 @@
+services:
+  personal-context-agent:
+    build: .
+    container_name: personal-context-agent
+    restart: unless-stopped
+    ports:
+      - "8088:8088"
+    environment:
+      PCA_DB_PATH: /data/personal_context.sqlite3
+    volumes:
+      - pca-data:/data
+
+volumes:
+  pca-data:
